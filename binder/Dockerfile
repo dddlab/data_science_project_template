@@ -1,4 +1,4 @@
-FROM dddlab/ds-project-template:sha-2c0f8dd
+FROM dddlab/data_science_project_template:latest
 
 # start binder compatibility
 # from https://mybinder.readthedocs.io/en/latest/tutorials/dockerfile.html

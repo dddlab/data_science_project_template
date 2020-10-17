@@ -22,9 +22,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          
           repository: dddlab/data_science_project_template
           tag_with_sha: true
+          tags: latest
       
   create-release:
 
@@ -45,8 +45,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            Changes in this Release
-            * Update all actions
+            Docker image: {{cookiecutter.target_docker_image}}:sha-${GITHUB_SHA::7} 
           draft: false
           prerelease: false
   
