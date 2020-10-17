@@ -1,6 +1,7 @@
 # Data Science Project Template
 
-![Docker Build CI](https://github.com/dddlab/data_science_project_template/workflows/Docker%20Build%20CI/badge.svg) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dddlab/data_science_project_template/main)
+![Build notebook image](https://github.com/dddlab/data_science_project_template/workflows/Build%20notebook%20image/badge.svg)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dddlab/data_science_project_template/main)
 
 This template repository simplifies setting up a reproducible data science project using Jupyter notebook.
 
