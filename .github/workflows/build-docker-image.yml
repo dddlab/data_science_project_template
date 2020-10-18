@@ -36,6 +36,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set body
+        id: set_body
+        run: |
+          echo "::set-output name=grader_image::dddlab/data_science_project_template:sha-${GITHUB_SHA::7}"
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -46,7 +51,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            "dddlab/data_science_project_template:sha-${GITHUB_SHA}"
+            ${{ steps.set_body.outputs.grader_image }}
           draft: false
           prerelease: false
   
