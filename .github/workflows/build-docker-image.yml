@@ -46,7 +46,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            "dddlab/data_science_project_template:sha-${{ github.sha }}"
+            "dddlab/data_science_project_template:sha-${GITHUB_SHA}"
           draft: false
           prerelease: false
   
