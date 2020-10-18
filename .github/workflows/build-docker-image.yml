@@ -17,12 +17,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set notebook env variables
+        id: set_env_notebook
+        run: |
+          echo "::set-output name=image::dddlab/data_science_project_template"
+          echo "::set-output name=tag::sha-${GITHUB_SHA::7}"
+
       - name: Build notebook image
         uses: docker/build-push-action@v1.1.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: dddlab/data_science_project_template
+          repository: ${{ steps.set_env_notebook.outputs.image }}
           tag_with_sha: true
           tags: latest
       
@@ -36,22 +42,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set body
-        id: set_body
-        run: |
-          echo "::set-output name=grader_image::dddlab/data_science_project_template:sha-${GITHUB_SHA::7}"
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_SHA: ${{ github.sha }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            ${{ steps.set_body.outputs.grader_image }}
+            ${{ steps.set_env_notebook.outputs.image }}:${{ steps.set_env_notebook.outputs.tag }}:
           draft: false
           prerelease: false
   
